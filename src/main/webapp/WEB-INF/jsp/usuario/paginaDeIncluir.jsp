@@ -12,7 +12,7 @@
 		Nome: <input type="text" size="20" name="usuario.nome">
 		<span class="error"> ${errors.from('usuario.nome')}</span><br/>
 		e-mail: <input type="text" size="20" name="usuario.email"><br/>
-		password: <input type="password" size="20" name="usuario.email"><br/>
+		password: <input type="password" size="20" name="usuario.password">${errors.from('usuario.nome')}<br/>
 		<input type="submit" name="salvar">
 	</form>
 </body>

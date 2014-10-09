@@ -45,8 +45,8 @@ public class UsuarioController {
 	@Path("/adiciona")
 	public void adiciona(Usuario usuario) {
 		service.adiciona(usuario);
-		validator.addIf(usuario.getUsername() == null, new SimpleMessage("username", "Login não informado!"));
-		validator.addIf(usuario.getPassword() == null, new SimpleMessage("password", "Senha não informada!"));
+		validator.addIf(usuario.getUsername() == null, new SimpleMessage("usuario", "Login não informado!"));
+		validator.addIf(usuario.getPassword() == null, new SimpleMessage("senha", "Senha não informada!"));
 		validator.onErrorRedirectTo(this).paginaDeIncluir();
 		result.include("sucesso", "Usuario adicionado com sucesso!");
 	}
