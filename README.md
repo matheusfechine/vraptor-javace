@@ -5,6 +5,6 @@ Projeto de exemplo utiizado na palestra do evento JavaCE realizado na Unifor no 
 
 - Para configurar o projeto, basta executar o comando do Maven:
 
-**mvn eclipse:clean eclipse:eclipse
+*mvn eclipse:clean eclipse:eclipse*
 
 - Após isso, basta importar o projeto no Eclipse.
