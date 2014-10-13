@@ -1,0 +1,7 @@
+bin/
+build/
+.classpath
+.project
+.settings/
+.DS_Store
+WebContent/WEB-INF/classes/
