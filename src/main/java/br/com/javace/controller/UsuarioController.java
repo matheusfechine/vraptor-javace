@@ -10,13 +10,13 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.javace.model.Usuario;
-import br.com.javace.service.UsuarioService;
+import br.com.javace.service.UsuarioDao;
 
 @Controller
 @Path("/usuario")
 public class UsuarioController {
 
-	private final UsuarioService service;
+	private final UsuarioDao usuarioDao;
 
 	private final Result result;
 
@@ -30,32 +30,33 @@ public class UsuarioController {
 	}
 
 	@Inject
-	public UsuarioController(Result result, UsuarioService service,
+	public UsuarioController(Result result, UsuarioDao usuarioDao,
 			Validator validator) {
 		this.result = result;
-		this.service = service;
+		this.usuarioDao = usuarioDao;
 		this.validator = validator;
 
 	}
 
-	public void listar() {
-		result.include("usuarios", service.listar());
+	@Get("/lista")
+	public void lista() {
+		result.include("usuarios", usuarioDao.listar());
 	}
 
-	@Post
-	@Path("/adiciona")
+	@Post("/adiciona")
 	public void adiciona(Usuario usuario) {
-		service.adiciona(usuario);
+		usuarioDao.adiciona(usuario);
 		validator.addIf(usuario.getLogin() == null, new SimpleMessage(
 				"usuario", "Login não informado!"));
 		validator.addIf(usuario.getSenha() == null, new SimpleMessage(
 				"senha", "Senha não informada!"));
-		validator.onErrorRedirectTo(this).paginaDeIncluir();
+		validator.onErrorRedirectTo(this).index();
 		result.include("sucesso", "Usuario adicionado com sucesso!");
+		result.redirectTo(this).index();
 	}
 
 	@Get
 	@Path("/")
-	public void paginaDeIncluir() {
+	public void index() {
 	}
 }

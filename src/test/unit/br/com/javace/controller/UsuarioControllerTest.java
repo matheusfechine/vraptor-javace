@@ -1,5 +1,7 @@
 package br.com.javace.controller;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -16,11 +18,11 @@ import br.com.caelum.vraptor.validator.Message;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.ValidationException;
 import br.com.javace.model.Usuario;
-import br.com.javace.service.UsuarioService;
+import br.com.javace.service.UsuarioDao;
 
 public class UsuarioControllerTest {
 
-	@Mock private UsuarioService service;
+	@Mock private UsuarioDao usuarioDao;
 	
 	private UsuarioController controller;
 	
@@ -32,13 +34,13 @@ public class UsuarioControllerTest {
 		MockitoAnnotations.initMocks(this);
 		result = new MockResult();
 		validator = new MockValidator();
-		controller = new UsuarioController(result, service, validator);
+		controller = new UsuarioController(result, usuarioDao, validator);
 	}
 	
 	@Test
 	public void deveListarTodosOsUsuarios(){
-		when(service.listar()).thenReturn(Arrays.asList(usuarioMatheus()));
-		controller.listar();
+		when(usuarioDao.listar()).thenReturn(Arrays.asList(usuarioMatheus()));
+		controller.lista();
 		assertEquals(Arrays.asList(usuarioMatheus()), result.included().get("usuarios"));
 	}
 
@@ -57,7 +59,7 @@ public class UsuarioControllerTest {
 	
 	@Test
 	public void deveriaChamarAPaginaDeIncluir(){
-		controller.paginaDeIncluir();
+		controller.index();
 	}
 	
 	@Test

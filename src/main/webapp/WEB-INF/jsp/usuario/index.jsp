@@ -8,15 +8,17 @@
 	<c:forEach var="error" items="${errors}">
 	    <div>${error.category} - ${error.message}</div><br />
 	</c:forEach>
+	
+	<br/><br/>
+	
+	<a href="<c:url value='/usuario/lista'/>">Lista</a>
+	
+	<br/><br/>
 	<form action="<c:url value='/usuario/adiciona'/>" method="post">
-		Nome: <input type="text" size="20" name="usuario.nome">
+		Login: <input type="text" size="20" name="usuario.login"><br/>
+		Senha: <input type="password" size="20" name="usuario.senha"><br/>
 		
-		<span class="error"> ${errors.from('usuario.nome')}</span><br/>
-		
-		e-mail: <input type="text" size="20" name="usuario.email"><br/>
-		password: <input type="password" size="20" name="usuario.password"><br/>
-		
-		<input type="submit" name="salvar">
+		<input type="submit" name="Salvar">
 	</form>
 </body>
 </html>
