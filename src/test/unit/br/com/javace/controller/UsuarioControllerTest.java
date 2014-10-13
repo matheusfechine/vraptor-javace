@@ -44,9 +44,8 @@ public class UsuarioControllerTest {
 
 	private Usuario usuarioMatheus() {
 		Usuario usuario = new Usuario();
-		usuario.setNome("Matheus");
-		usuario.setPassword("12345");
-		usuario.setUsername("matheus");
+		usuario.setLogin("matheus");
+		usuario.setSenha("12345");
 		return usuario;
 	}
 	
@@ -64,7 +63,7 @@ public class UsuarioControllerTest {
 	@Test
 	public void deveriaLancarErroDeValidacaoQuandoLoginNaoInformado(){
 		Usuario user = usuarioMatheus();
-		user.setUsername(null);
+		user.setLogin(null);
 		String campo = "usuario";
 		String mensagem = "Login não informado!";
 		valida(user, campo, mensagem);
@@ -73,7 +72,7 @@ public class UsuarioControllerTest {
 	@Test
 	public void deveriaLancarErroDeValidacaoQuandoPasswordNaoInformado(){
 		Usuario user = usuarioMatheus();
-		user.setPassword(null);
+		user.setSenha(null);
 		String campo = "senha";
 		String mensagem = "Senha não informada!";
 		valida(user, campo, mensagem);

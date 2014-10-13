@@ -17,26 +17,27 @@ import br.com.javace.service.UsuarioService;
 public class UsuarioController {
 
 	private final UsuarioService service;
-	
+
 	private final Result result;
-	
+
 	private Validator validator;
-	
+
 	/**
-     * @deprecated CDI eyes only
-     */
-    protected UsuarioController() {
-        this(null, null, null);
-    }
-	
-    @Inject
-    public UsuarioController(Result result, UsuarioService service, Validator validator){
-    	this.result = result;
-    	this.service = service;
-    	this.validator = validator;
-    	
-    }
-    
+	 * @deprecated CDI eyes only
+	 */
+	protected UsuarioController() {
+		this(null, null, null);
+	}
+
+	@Inject
+	public UsuarioController(Result result, UsuarioService service,
+			Validator validator) {
+		this.result = result;
+		this.service = service;
+		this.validator = validator;
+
+	}
+
 	public void listar() {
 		result.include("usuarios", service.listar());
 	}
@@ -45,8 +46,10 @@ public class UsuarioController {
 	@Path("/adiciona")
 	public void adiciona(Usuario usuario) {
 		service.adiciona(usuario);
-		validator.addIf(usuario.getUsername() == null, new SimpleMessage("usuario", "Login não informado!"));
-		validator.addIf(usuario.getPassword() == null, new SimpleMessage("senha", "Senha não informada!"));
+		validator.addIf(usuario.getLogin() == null, new SimpleMessage(
+				"usuario", "Login não informado!"));
+		validator.addIf(usuario.getSenha() == null, new SimpleMessage(
+				"senha", "Senha não informada!"));
 		validator.onErrorRedirectTo(this).paginaDeIncluir();
 		result.include("sucesso", "Usuario adicionado com sucesso!");
 	}
