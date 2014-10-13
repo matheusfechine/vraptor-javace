@@ -38,17 +38,8 @@ public class UsuarioControllerTest {
 	}
 	
 	@Test
-	public void deveListarTodosOsUsuarios(){
-		when(usuarioDao.listar()).thenReturn(Arrays.asList(usuarioMatheus()));
-		controller.lista();
-		assertEquals(Arrays.asList(usuarioMatheus()), result.included().get("usuarios"));
-	}
-
-	private Usuario usuarioMatheus() {
-		Usuario usuario = new Usuario();
-		usuario.setLogin("matheus");
-		usuario.setSenha("12345");
-		return usuario;
+	public void deveriaChamarAPaginaDeIncluir(){
+		controller.index();
 	}
 	
 	@Test
@@ -57,10 +48,6 @@ public class UsuarioControllerTest {
 		assertEquals("Usuario adicionado com sucesso!", result.included().get("sucesso"));
 	}
 	
-	@Test
-	public void deveriaChamarAPaginaDeIncluir(){
-		controller.index();
-	}
 	
 	@Test
 	public void deveriaLancarErroDeValidacaoQuandoLoginNaoInformado(){
@@ -79,6 +66,13 @@ public class UsuarioControllerTest {
 		String mensagem = "Senha não informada!";
 		valida(user, campo, mensagem);
 	}
+	
+	@Test
+	public void deveListarTodosOsUsuarios(){
+		when(usuarioDao.listar()).thenReturn(Arrays.asList(usuarioMatheus()));
+		controller.lista();
+		assertEquals(Arrays.asList(usuarioMatheus()), result.included().get("usuarios"));
+	}
 
 	private void valida(Usuario user, String campo, String mensagem) {
 		try {
@@ -89,6 +83,13 @@ public class UsuarioControllerTest {
 			assertTrue(errors.contains(new SimpleMessage(campo, mensagem)));
 			assertEquals(1, errors.size());
 		}
+	}
+
+	private Usuario usuarioMatheus() {
+		Usuario usuario = new Usuario();
+		usuario.setLogin("matheus");
+		usuario.setSenha("12345");
+		return usuario;
 	}
 	
 }
