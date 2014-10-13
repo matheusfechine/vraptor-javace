@@ -4,4 +4,5 @@ build/
 .project
 .settings/
 .DS_Store
+target/
 WebContent/WEB-INF/classes/
