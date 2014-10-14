@@ -9,8 +9,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
+import br.com.javace.dao.UsuarioDao;
 import br.com.javace.model.Usuario;
-import br.com.javace.service.UsuarioDao;
 
 @Controller
 @Path("/usuario")

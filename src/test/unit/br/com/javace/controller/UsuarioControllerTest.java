@@ -17,8 +17,8 @@ import br.com.caelum.vraptor.util.test.MockValidator;
 import br.com.caelum.vraptor.validator.Message;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.ValidationException;
+import br.com.javace.dao.UsuarioDao;
 import br.com.javace.model.Usuario;
-import br.com.javace.service.UsuarioDao;
 
 public class UsuarioControllerTest {
 

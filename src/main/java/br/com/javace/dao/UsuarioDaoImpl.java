@@ -1,4 +1,4 @@
-package br.com.javace.service;
+package br.com.javace.dao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
