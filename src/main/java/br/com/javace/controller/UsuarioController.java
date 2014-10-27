@@ -55,8 +55,7 @@ public class UsuarioController {
 		result.redirectTo(this).index();
 	}
 
-	@Get
-	@Path("/")
+	@Get("/")
 	public void index() {
 	}
 }

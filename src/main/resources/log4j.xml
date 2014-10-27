@@ -9,13 +9,8 @@
                 </layout>
         </appender>
 
-        <category name="org.vraptor">
+        <category name="br.com.caelum.vraptors">
                 <priority value="INFO" />
-                <appender-ref ref="stdout" />
-        </category>
-
-        <category name="br.com.caelum">
-                <priority value="DEBUG" />
                 <appender-ref ref="stdout" />
         </category>
         
